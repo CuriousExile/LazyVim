@@ -281,14 +281,14 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>n", function()
+      { "<leader>sn", function()
         if Snacks.config.picker and Snacks.config.picker.enabled then
           Snacks.picker.notifications()
         else
           Snacks.notifier.show_history()
         end
-      end, desc = "Notification History" },
-      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+      end, desc = "[S]earch [N]otification History" },
+      { "<leader>tn", function() Snacks.notifier.hide() end, desc = "[T]oggle [N]otifications" },
     },
   },
 

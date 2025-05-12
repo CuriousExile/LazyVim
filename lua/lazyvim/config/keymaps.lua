@@ -75,7 +75,7 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- lazy
-map("n", "<leader>l", "<cmd>[L]azy<cr>", { desc = "Lazy" })
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "[L]azy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "[F]ile [N]ew" })
@@ -103,7 +103,7 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "[F]ile [N]ew" })
 -- NOTE: change later to ff file format - just have to do change every search to sX
 map({ "n", "v" }, "<leader>cf", function()
   LazyVim.format({ force = true })
-end, { desc = "Format" })
+end, { desc = "[C]ode [F]ormat" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
@@ -164,7 +164,7 @@ map("n", "<leader>ui", vim.show_pos, { desc = "[U]nder [I]nspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "[U]nder [I]nspect Tree" })
 
 -- LazyVim Changelog
--- map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "[L]azyVim Changelog" })
 
 -- floating terminal
 -- map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })

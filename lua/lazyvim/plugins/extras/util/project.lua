@@ -106,21 +106,21 @@ return {
     end,
   },
 
-  {
-    "nvim-telescope/telescope.nvim",
-    optional = true,
-    keys = {
-      { "<leader>fp", pick, desc = "Projects" },
-    },
-  },
-
-  {
-    "ibhagwan/fzf-lua",
-    optional = true,
-    keys = {
-      { "<leader>fp", pick, desc = "Projects" },
-    },
-  },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   optional = true,
+  --   keys = {
+  --     { "<leader>sp", pick, desc = "Projects" },
+  --   },
+  -- },
+  --
+  -- {
+  --   "ibhagwan/fzf-lua",
+  --   optional = true,
+  --   keys = {
+  --     { "<leader>sp", pick, desc = "Projects" },
+  --   },
+  -- },
 
   {
     "goolord/alpha-nvim",

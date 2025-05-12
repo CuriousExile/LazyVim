@@ -9,16 +9,16 @@ return {
       function()
         Snacks.explorer({ cwd = LazyVim.root() })
       end,
-      desc = "Explorer Snacks (root dir)",
+      desc = "[E]xplorer Snacks (root dir)",
     },
     {
       "<leader>fE",
       function()
         Snacks.explorer()
       end,
-      desc = "Explorer Snacks (cwd)",
+      desc = "[E]xplorer Snacks (cwd)",
     },
-    { "<leader>e", "<leader>fe", desc = "Explorer Snacks (root dir)", remap = true },
-    { "<leader>E", "<leader>fE", desc = "Explorer Snacks (cwd)", remap = true },
+    { "<leader>e", "<leader>fe", desc = "[E]xplorer Snacks (root dir)", remap = true },
+    { "<leader>E", "<leader>fE", desc = "[E]xplorer Snacks (cwd)", remap = true },
   },
 }
