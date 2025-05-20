@@ -259,13 +259,24 @@ return {
 
     "mason-org/mason.nvim",
     cmd = "Mason",
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "[C]ode LSP [M]ason" } },
     build = ":MasonUpdate",
     opts_extend = { "ensure_installed" },
     opts = {
       ensure_installed = {
         "stylua",
         "shfmt",
+        "gopls",
+        "rust_analyzer",
+        "rnix-lsp",
+        "ts_ls",
+        "angularls",
+        "jsonls",
+        "lemminx",
+        "yamlls",
+        "jdtls",
+        "clangd",
+        "dartls",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}

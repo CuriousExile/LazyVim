@@ -55,16 +55,18 @@ return {
       spec = {
         {
           mode = { "n", "v" },
-          { "<leader><tab>", group = "Tabs" },
+          { "<leader><tab>", group = "[Tab]s" },
           { "<leader>c", group = "[C]ode" },
           { "<leader>d", group = "[D]ebug" },
           { "<leader>f", group = "[F]ile" },
+          { "<leader>n", group = "[N]ote" },
+          -- { "<leader>n", group = "[T]est" },
           { "<leader>g", group = "[G]it" },
           { "<leader>gh", group = "[G]it [H]unks" },
           { "<leader>q", group = "[Q]uit" },
           { "<leader>s", group = "[S]earch" },
           { "<leader>u", group = "[U]I", icon = { icon = "󰙵 ", color = "cyan" } },
-          { "<leader>x", group = "Diagnostics/Quickfi[x]", icon = { icon = "󱖫 ", color = "green" } },
+          { "<leader>x", group = "Diagnostics/Quickfi[X]", icon = { icon = "󱖫 ", color = "green" } },
           { "[", group = "Prev" },
           { "]", group = "Next" },
           {

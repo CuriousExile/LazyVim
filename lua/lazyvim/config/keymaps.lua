@@ -4,6 +4,13 @@
 -- use `vim.keymap.set` instead
 local map = LazyVim.safe_keymap_set
 
+-- quick inline commands
+map("i", "jj", "<Esc>", { desc = "Exit Insert Mode", expr = true, siltent = true })
+
+map("n", "<leader>S", ":wa<CR>", { desc = "[S]ave All Buffers", silent = true })
+map("n", "<leader>X", ":qa!<CR>", { desc = "Force E[X]it", silent = true })
+map("n", "<leader>Q", ":confirm qall<CR>", { desc = "[Q]uit with Prompt", silent = true })
+
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -123,7 +130,7 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 -- formatting
 map({ "n", "v" }, "<leader>cf", function()
   LazyVim.format({ force = true })
-end, { desc = "Format" })
+end, { desc = "[C]ode [F]ormat" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
@@ -133,7 +140,7 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "[C]ode [L]ine Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -168,21 +175,21 @@ end
 
 -- lazygit
 if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-  map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
-  map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
-  map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git Log" })
-  map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
+  map("n", "<leader>gl", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "[G]it [L]azygit" })
+  -- map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
+  map("n", "<leader>gH", function() Snacks.picker.git_log_file() end, { desc = "[G]it Current File [H]istory" })
+  -- map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git Log" })
+  -- map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
 end
 
-map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git Blame Line" })
-map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse (open)" })
-map({"n", "x" }, "<leader>gY", function()
-  Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
-end, { desc = "Git Browse (copy)" })
+map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "[G]it [B]lame Line" })
+map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "[G]it [B]rowse (open)" })
+-- map({"n", "x" }, "<leader>gY", function()
+--   Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
+-- end, { desc = "Git Browse (copy)" })
 
 -- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit [Q]UIT" })
 
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
@@ -192,30 +199,32 @@ map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_inp
 -- map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
 
 -- floating terminal
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-/>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
+-- map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
+-- map("n", "<leader>tt", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+-- map("n", "<c-/>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+-- map("n", "<c-_>",      function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
 
 -- Terminal Mappings
-map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+-- map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+-- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- windows
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+-- map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+-- map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>h", "<C-W>s", { desc = "Split Window [H]orizontal", remap = true })
+map("n", "<leader>v", "<C-W>v", { desc = "Split Window [V]ertical", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "[W]indow [D]elete", remap = true })
 Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ")
 Snacks.toggle.zen():map("<leader>uz")
 
 -- tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "[Tab] [L]ast" })
+map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "[Tab] Close [O]thers" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "[Tab] [F]irst" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "[Tab] [N]ew" })
+-- map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "[Tab] [D]elete" })
+-- map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- native snippets. only needed on < 0.11, as 0.11 creates these by default
 if vim.fn.has("nvim-0.11") == 0 then

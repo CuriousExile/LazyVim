@@ -30,7 +30,7 @@ return {
           require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
         end,
         mode = { "n", "v" },
-        desc = "Format Injected Langs",
+        desc = "[C]ode [F]ormat Injected Langs",
       },
     },
     init = function()
