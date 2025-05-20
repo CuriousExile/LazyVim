@@ -69,10 +69,9 @@ return {
     },
   },
   {
-    "LazyVim/LazyVim",
+    "CuriousExile/LazyVim",
     config = function(_, opts)
       opts = opts or {}
-      -- disable the colorscheme
       opts.colorscheme = function() end
       require("lazyvim").setup(opts)
     end,
