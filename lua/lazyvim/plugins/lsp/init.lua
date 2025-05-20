@@ -267,7 +267,7 @@ return {
         "stylua",
         "shfmt",
         "gopls",
-        "tsserver",
+        "typescript-language-server",
         "angularls",
         "jsonls",
         "lemminx",
