@@ -5,7 +5,7 @@
 local map = LazyVim.safe_keymap_set
 
 -- quick inline commands
-map("i", "jj", "<Esc>", { desc = "Exit Insert Mode", expr = true, siltent = true })
+map("i", "jj", "<Esc>", { desc = "Exit Insert Mode", silent = true })
 
 map("n", "<leader>S", ":wa<CR>", { desc = "[S]ave All Buffers", silent = true })
 map("n", "<leader>X", ":qa!<CR>", { desc = "Force E[X]it", silent = true })
