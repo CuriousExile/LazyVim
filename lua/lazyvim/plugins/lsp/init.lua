@@ -264,17 +264,19 @@ return {
     opts_extend = { "ensure_installed" },
     opts = {
       ensure_installed = {
-        "stylua",
-        "shfmt",
-        "gopls",
-        "typescript-language-server",
-        "angularls",
-        "jsonls",
-        "lemminx",
-        "yamlls",
-        "jdtls",
-        "clangd",
-        "dartls",
+        "stylua", -- Lua formatter
+        "shfmt", -- Shell formatter
+        "gopls", -- Go language server
+        "rust_analyzer", -- Rust LSP
+        "rnix-lsp", -- Nix language server
+        "typescript-language-server", -- TypeScript LSP (used by tsserver in lspconfig)
+        "angular-language-server", -- Angular LSP
+        "jsonls", -- JSON LSP
+        "lemminx", -- XML LSP
+        "yamlls", -- YAML LSP
+        "jdtls", -- Java LSP
+        "clangd", -- C/C++ LSP
+        "dartls", -- Dart/Flutter LSP
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
