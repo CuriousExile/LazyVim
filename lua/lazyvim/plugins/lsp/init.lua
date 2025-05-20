@@ -267,7 +267,7 @@ return {
         "stylua",
         "shfmt",
         "gopls",
-        "rust_analyzer",
+        -- "rust_analyzer",
         "rnix-lsp",
         "ts_ls",
         "angularls",
