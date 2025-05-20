@@ -267,16 +267,16 @@ return {
         "stylua", -- Lua formatter
         "shfmt", -- Shell formatter
         "gopls", -- Go language server
-        "rust_analyzer", -- Rust LSP
+        "rust-analyzer", -- Rust LSP
         "rnix-lsp", -- Nix language server
         "typescript-language-server", -- TypeScript LSP (used by tsserver in lspconfig)
         "angular-language-server", -- Angular LSP
-        "jsonls", -- JSON LSP
+        "json-lsp", -- JSON LSP
         "lemminx", -- XML LSP
-        "yamlls", -- YAML LSP
+        "yaml-language-server", -- YAML LSP
         "jdtls", -- Java LSP
         "clangd", -- C/C++ LSP
-        "dartls", -- Dart/Flutter LSP
+        "dcm", -- Dart/Flutter LSP
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
