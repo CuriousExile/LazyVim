@@ -5,6 +5,15 @@ return {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = { style = "moon" },
+    custom_highlights = function()
+      return {
+        DiffDelete = { bg = "#520915" },
+        DiffAdd = { bg = "#062e0e" },
+        DiffChange = { bg = "#786c10" },
+        DiffviewDiffText = { bg = "#786c10" },
+        DiffviewDiffDeleteDim = { fg = "#383847" },
+      }
+    end,
   },
 
   -- catppuccin
@@ -32,11 +41,17 @@ return {
         mini = true,
         native_lsp = {
           enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+          },
           underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
           },
         },
         navic = { enabled = true, custom_bg = "lualine" },
@@ -51,6 +66,15 @@ return {
         treesitter_context = true,
         which_key = true,
       },
+      custom_highlights = function()
+        return {
+          DiffDelete = { bg = "#520915" },
+          DiffAdd = { bg = "#062e0e" },
+          DiffChange = { bg = "#786c10" },
+          DiffviewDiffText = { bg = "#786c10" },
+          DiffviewDiffDeleteDim = { fg = "#383847" },
+        }
+      end,
     },
     specs = {
       {
