@@ -72,7 +72,8 @@ return {
       -- { "<leader>fR", function() Snacks.picker.recent({ filter = { cwd = true }}) end, desc = "Recent (cwd)" },
       { "<leader>sp", function() Snacks.picker.projects() end, desc = "[S]earch [P]rojects" },
       -- git
-      { "<leader>gH", function() Snacks.picker.git_diff() end, desc = "[G]it [D]iff Picker (hunks)" },
+      { "<leader>gH", function() Snacks.picker.git_diff() end, desc = "[G]it Diff Picker ([H]unks)" },
+      { "<leader>sH", function() Snacks.picker.git_diff() end, desc = "[S]earch Diff Picker ([H]unks)" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "[G]it [S]tatus" },
       { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "[G]it [S]tash" },
       -- Grep
@@ -91,7 +92,7 @@ return {
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "[S]earch [D]iagnostics" },
       { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "[S]earch Buffer [D]iagnostics" },
       -- { "<leader>sh", function() Snacks.picker.help() end, desc = "[S]earch [H]elp Pages" },
-      { "<leader>sH", function() Snacks.picker.highlights() end, desc = "[S]earch [H]ighlights" },
+      -- { "<leader>sH", function() Snacks.picker.highlights() end, desc = "[S]earch [H]ighlights" },
       -- { "<leader>si", function() Snacks.picker.icons() end, desc = "[S]earch [I]cons" },
       { "<leader>sj", function() Snacks.picker.jumps() end, desc = "[S]earch [J]umps" },
       { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "[S]earch [K]eymaps" },
@@ -100,7 +101,7 @@ return {
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "[S]earch [M]arks" },
       { "<leader>sR", function() Snacks.picker.resume() end, desc = "[S]earch [R]esume" },
       { "<leader>sq", function() Snacks.picker.qflist() end, desc = "[S]earch [Q]uickfix List" },
-      { "<leader>su", function() Snacks.picker.undo() end, desc = "[S]earch [U]ndotree" },
+    { "<leader>su", function() Snacks.picker.undo() end, desc = "[S]earch [U]ndotree" },
       -- ui
       { "<leader>sC", function() Snacks.picker.colorschemes() end, desc = "[S]earch [C]olorschema" },
     },
@@ -137,9 +138,9 @@ return {
       local Keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- stylua: ignore
       vim.list_extend(Keys, {
-        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition", has = "definition" },
-        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "[G]oto [D]efinition", has = "definition" },
+        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "[G]oto [R]eferences" },
+        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "[G]oto [I]mplementation" },
         { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
         { "<leader>ss", function() Snacks.picker.lsp_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "[S]earch [L]]SP Symbols", has = "documentSymbol" },
         { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "[S]earch [L]SP Workspace Symbols", has = "workspace/symbols" },
@@ -151,8 +152,8 @@ return {
     optional = true,
     -- stylua: ignore
     keys = {
-      { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo" },
-      { "<leader>sT", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
+      { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "[S]earch [T]odo and other" },
+      { "<leader>sT", function () Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "[S]earch [T]odo/Fix/Fixme" },
     },
   },
   {
