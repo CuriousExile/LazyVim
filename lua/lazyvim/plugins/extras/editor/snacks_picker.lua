@@ -95,7 +95,7 @@ return {
       -- { "<leader>si", function() Snacks.picker.icons() end, desc = "[S]earch [I]cons" },
       { "<leader>sj", function() Snacks.picker.jumps() end, desc = "[S]earch [J]umps" },
       { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "[S]earch [K]eymaps" },
-      { "<leader>sl", function() Snacks.picker.loclist() end, desc = "[S]earch [L]ocation List" },
+      -- { "<leader>sl", function() Snacks.picker.loclist() end, desc = "[S]earch [L]ocation List" },
       -- { "<leader>sM", function() Snacks.picker.man() end, desc = "[S]earch [M]an Pages" },
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "[S]earch [M]arks" },
       { "<leader>sR", function() Snacks.picker.resume() end, desc = "[S]earch [R]esume" },
