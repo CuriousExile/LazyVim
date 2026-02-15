@@ -100,7 +100,10 @@ return {
       },
 
       keymap = {
-        preset = "enter",
+        preset = "default",
+        ["<Tab>"] = { "select_next", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "fallback" },
+        ["<C-n>"] = { "cancel", "fallback" },
         ["<C-y>"] = { "select_and_accept" },
       },
     },

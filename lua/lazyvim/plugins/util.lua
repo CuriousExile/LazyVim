@@ -29,9 +29,9 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-      { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-      { "<leader>dps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Buffer" },
+      { "<leader>n.",  function() Snacks.scratch() end, desc = "[N]ote [.] Scratch" },
+      { "<leader>nS",  function() Snacks.scratch.select() end, desc = "[N]ote [S]elect Scratch" },
+      -- { "<leader>dps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch Buffer" },
     },
   },
 
