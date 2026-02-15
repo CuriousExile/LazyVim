@@ -79,7 +79,7 @@ return {
       { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "[G]it [S]tash" },
       -- GitLab MRs via glab CLI (replaces GitHub gh_pr/gh_issue)
       { "<leader>gp", function()
-        vim.system({ "glab", "mr", "list", "--mine", "-F", "json" }, { text = true }, vim.schedule_wrap(function(out)
+        vim.system({ "glab", "mr", "list", "--assignee=@me", "-F", "json" }, { text = true, cwd = LazyVim.root() }, vim.schedule_wrap(function(out)
           if out.code ~= 0 then vim.notify("glab: " .. (out.stderr or ""), vim.log.levels.ERROR) return end
           local ok, mrs = pcall(vim.json.decode, out.stdout)
           if not ok or not mrs or #mrs == 0 then vim.notify("No open MRs", vim.log.levels.INFO) return end
