@@ -77,10 +77,22 @@ return {
       { "<leader>gD", function() Snacks.picker.git_diff({ base = "origin", group = true }) end, desc = "Git Diff (origin)" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "[G]it [S]tatus" },
       { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "[G]it [S]tash" },
-      { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
-      { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
-      { "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
-      { "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
+      -- GitLab MRs via glab CLI (replaces GitHub gh_pr/gh_issue)
+      { "<leader>gp", function()
+        vim.system({ "glab", "mr", "list", "--mine", "-F", "json" }, { text = true }, vim.schedule_wrap(function(out)
+          if out.code ~= 0 then vim.notify("glab: " .. (out.stderr or ""), vim.log.levels.ERROR) return end
+          local ok, mrs = pcall(vim.json.decode, out.stdout)
+          if not ok or not mrs or #mrs == 0 then vim.notify("No open MRs", vim.log.levels.INFO) return end
+          local labels, urls = {}, {}
+          for i, mr in ipairs(mrs) do
+            labels[i] = string.format("!%d  %s  (%s)", mr.iid, mr.title, mr.source_branch or "")
+            urls[i] = mr.web_url
+          end
+          vim.ui.select(labels, { prompt = "GitLab Merge Requests" }, function(_, idx)
+            if idx then vim.ui.open(urls[idx]) end
+          end)
+        end))
+      end, desc = "[G]it Merge Requests ([P]ull)" },
       -- Grep
       -- { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "[S]earch Grep [B]uffers (Open)" },
