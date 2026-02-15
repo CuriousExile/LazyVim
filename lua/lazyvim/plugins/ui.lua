@@ -5,16 +5,16 @@ return {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
-      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
-      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
-      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
+      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "[B]uffer Toggle [P]in" },
+      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "[B]uffer Delete Non-[P]inned" },
+      -- { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
+      -- { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
       { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
       { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-      { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
-      { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+      -- { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+      -- { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+      -- { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
+      -- { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
     },
     opts = {
       options = {
@@ -223,13 +223,13 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>sn", "", desc = "+noice"},
+      { "<leader>sn", "", desc = "+[N]oice"},
       { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-      { "<leader>snt", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)" },
+      { "<leader>snl", function() require("noice").cmd("last") end, desc = "[S]earch [N]oice [L]ast Message" },
+      { "<leader>snh", function() require("noice").cmd("history") end, desc = "[S]earch [N]oice [H]istory" },
+      -- { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
+      -- { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
+      -- { "<leader>snt", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)" },
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
     },
@@ -302,12 +302,12 @@ return {
             return LazyVim.pick(cmd, opts)()
           end,
           header = [[
-          ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-          ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    
-          ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       
-          ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z         
-          ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║           
-          ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝           
+      ███████╗██╗  ██╗██╗██╗     ███████╗██████╗     ██╗██████╗ ███████╗
+      ██╔════╝╚██╗██╔╝██║██║     ██╔════╝██╔══██╗    ██║██╔══██╗██╔════╝
+      █████╗   ╚███╔╝ ██║██║     █████╗  ██║  ██║    ██║██║  ██║█████╗  
+      ██╔══╝   ██╔██╗ ██║██║     ██╔══╝  ██║  ██║    ██║██║  ██║██╔══╝  
+      ███████╗██╔╝ ██╗██║███████╗███████╗██████╔╝    ██║██████╔╝███████╗
+      ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝     ╚═╝╚═════╝ ╚══════╝
    ]],
           -- stylua: ignore
           ---@type snacks.dashboard.Item[]
@@ -318,7 +318,6 @@ return {
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-            { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
