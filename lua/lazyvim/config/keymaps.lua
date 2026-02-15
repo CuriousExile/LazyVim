@@ -4,6 +4,13 @@
 -- use `vim.keymap.set` instead
 local map = LazyVim.safe_keymap_set
 
+-- quick inline commands
+map("i", "jj", "<Esc>", { desc = "Exit Insert Mode", silent = true })
+
+map("n", "<leader>S", ":wa<CR>", { desc = "[S]ave All Buffers", silent = true })
+map("n", "<leader>X", ":qa!<CR>", { desc = "Force E[X]it", silent = true })
+map("n", "<leader>Q", ":confirm qall<CR>", { desc = "[Q]uit with Prompt", silent = true })
+
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -35,15 +42,14 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "[B]uffer · [B]ack to Previous" })
 map("n", "<leader>bd", function()
   Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
+end, { desc = "[B]uffer [D]elete (Current)" })
 map("n", "<leader>bo", function()
   Snacks.bufdelete.other()
-end, { desc = "Delete Other Buffers" })
-map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+end, { desc = "[B]uffer Delete [O]thers" })
+map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "[B]uffer [D]elete + Window" })
 
 -- Clear search and stop snippet on escape
 map({ "i", "n", "s" }, "<esc>", function()
@@ -78,7 +84,7 @@ map("i", ";", ";<c-g>u")
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 --keywordprg
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
+-- map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 -- better indenting
 map("x", "<", "<gv")
@@ -89,7 +95,7 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "[L]azy" })
 
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -116,7 +122,7 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 -- formatting
 map({ "n", "x" }, "<leader>cf", function()
   LazyVim.format({ force = true })
-end, { desc = "Format" })
+end, { desc = "[C]ode [F]ormat" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
@@ -128,7 +134,7 @@ local diagnostic_goto = function(next, severity)
     })
   end
 end
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "[C]ode [L]ine Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -163,50 +169,42 @@ end
 
 -- lazygit
 if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-  map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
+  map("n", "<leader>gl", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "[G]it [L]azygit" })
 end
 
-map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
-map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git Blame Line" })
-map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
-map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git Log" })
-map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse (open)" })
-map({"n", "x" }, "<leader>gY", function()
-  Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
-end, { desc = "Git Browse (copy)" })
+map("n", "<leader>gH", function() Snacks.picker.git_log_file() end, { desc = "[G]it Current File [H]istory" })
+map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "[G]it [B]lame Line" })
+map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "[G]it [B]rowse (open)" })
 
 -- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit [Q]UIT" })
 
 -- highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
 
 -- LazyVim Changelog
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+-- map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
 
--- floating terminal
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map({"n","t"}, "<c-/>",function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map({"n","t"}, "<c-_>",function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
+-- floating terminal (disabled — using tmux)
+-- map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
+-- map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+-- map({"n","t"}, "<c-/>",function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
+-- map({"n","t"}, "<c-_>",function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
 
 -- windows
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>h", "<C-W>s", { desc = "Split Window [H]orizontal", remap = true })
+map("n", "<leader>v", "<C-W>v", { desc = "Split Window [V]ertical", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "[W]indow [D]elete", remap = true })
 Snacks.toggle.zoom():map("<leader>wm"):map("<leader>uZ")
 Snacks.toggle.zen():map("<leader>uz")
 
 -- tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "[Tab] [L]ast" })
+map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "[Tab] Close [O]thers" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "[Tab] [F]irst" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "[Tab] [N]ew" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "[Tab] [D]elete" })
 
 -- lua
 map({"n", "x"}, "<localleader>r", function() Snacks.debug.run() end, { desc = "Run Lua", ft = "lua" })
